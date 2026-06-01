@@ -1,0 +1,38 @@
+# Main layout architecture
+format = """
+[░▒▓](#72638a)\
+[ 󱄅 ](bg:#72638a fg:#ece7f5)\
+[](bg:#8779a1 fg:#72638a)\
+$directory\
+[](fg:#8779a1 bg:#3d374d)\
+[ $git_branch$git_status ](bg:#3d374d fg:#d5cfe1)\
+[ ](fg:#3d374d)\
+\n$character"""
+
+[directory]
+format = "[ $path ](bg:#8779a1 fg:#1c1a24)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+# Contextual folder icons for high visibility
+[directory.substitutions]
+"~" = "󱂵 ~"
+"Pictures" = "󰉏 Pictures"
+"Documents" = "󱔗 Documents"
+"Downloads" = "󱑢 Downloads"
+"nixos-config" = "󱆃 nixos-config"
+".config" = "󱁳 .config"
+
+[git_branch]
+format = "[$symbol$branch]($style)"
+symbol = "󰘬 "
+style = "bg:#3d374d fg:#dbd1fd"
+
+# Fixed the configuration syntax error here
+[git_status]
+format = "[$all_status$ahead_behind]($style)"
+style = "bg:#3d374d fg:#dbd1fd"
+
+[character]
+success_symbol = "[ ──>](bold #b1a5cf)"
+error_symbol = "[ ──>](bold #72638a)"

@@ -14,6 +14,16 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Garbage collection settings
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+  
+  # Limit boot menu generations
+  boot.loader.systemd-boot.configurationLimit = 2;
+
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -58,7 +68,10 @@
     ];
   };
 
-
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.symbols-only
+  ];
   
 
   # Configure keymap in X11
@@ -109,7 +122,31 @@
     nitrogen
     polybar
     dmenu
+    rofi
+    ripgrep
+    fd
+    unzip
+    dunst
+    maim
+    slop 
+    xclip
+    libnotify
+    starship
   ];
+
+
+  programs.bash.promptInit = ''
+    # Custom Lavender Bash Prompt
+    PS1="\[\033[1;35m\]󱄅 \[\033[1;34m\]\w\[\033[0m\] ───> "
+  '';
+  
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+  users.users.nyx.shell = pkgs.zsh;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

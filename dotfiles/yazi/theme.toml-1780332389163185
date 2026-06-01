@@ -1,0 +1,20 @@
+# Custom Yazi Color Profile
+
+[manager]
+# Active highlighted file line selection
+custom_selected = { fg = "#1c1a24", bg = "#8779a1", bold = true }
+
+# Columns border lines styling
+border_symbol = "│"
+border_style  = { fg = "#3d374d" }
+
+[status]
+# Left side status indicators (Normal/Visual modes)
+mode_normal = { fg = "#1c1a24", bg = "#b1a5cf", bold = true }
+mode_select = { fg = "#1c1a24", bg = "#dbd1fd", bold = true }
+
+[filetype]
+# Directory text color profile matching your wallpaper accents
+rules = [
+	{ name = "*/", fg = "#bd93f9" }
+]

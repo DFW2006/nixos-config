@@ -13,7 +13,7 @@ move_window_amount      : 50
 resize_window_amount    : 50
 snap_distance           : 5
 motion_throttle         : 60 # Set to screen refresh rate for smoothest motions
-should_float            : "pcmanfm", "obs"
+should_float            : "nothing_custom"
 new_win_focus           : true
 warp_cursor             : true
 floating_on_top         : true
@@ -30,13 +30,16 @@ mod_key : super
 # Application Launchers:
 bind : mod + Return : "alacritty"
 bind : mod + b : "firefox"
-bind : mod + p : "dmenu_run"
+bind : mod + p : "rofi -show drun -theme ~/.config/rofi/theme.rasi"
 
 # Window Management:
 call : mod + shift + q : close_window
 call : mod + c : centre_window
 call : mod + shift + e : quit
 call : mod + m : toggle_monocle
+
+# Take an interactive area screenshot with the Print Screen key
+bind : print : "maim -u -s | xclip -selection clipboard -t image/png"
 
 # Focus Movement:
 call : mod + j : focus_next
@@ -73,7 +76,7 @@ call : mod + shift + Down : resize_win_down
 call : mod + shift + Left : resize_win_left
 call : mod + shift + Right : resize_win_right
 
-# Gaps 
+# Gaps
 call : mod + equal : increase_gaps
 call : mod + minus : decrease_gaps
 
@@ -120,3 +123,9 @@ workspace : mod + 8          : move 8
 workspace : mod + shift + 8  : swap 8
 workspace : mod + 9          : move 9
 workspace : mod + shift + 9  : swap 9
+
+# Safely execute the master autostart routine
+start ~/.config/sxwm/autostart.sh
+
+# Start Dunst Notification Server
+dunst &

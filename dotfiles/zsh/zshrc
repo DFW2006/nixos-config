@@ -1,0 +1,8 @@
+# Initialize Starship Prompt
+eval "$(starship init zsh)"
+
+# Clean interactive options
+bindkey '^I' menu-complete
+
+# Start background daemons if they aren't running yet
+pgrep -x picom >/dev/null || ~/.config/sxwm/autostart.sh &
