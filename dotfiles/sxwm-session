@@ -1,0 +1,16 @@
+#!/bin/sh
+# 1. Set display resolution
+xrandr --newmode "1366x768_60.00"  85.25  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
+xrandr --addmode Virtual-1 "1366x768_60.00"
+xrandr --output Virtual-1 --mode "1366x768_60.00"
+
+# 2. Wait a split second for X11 to catch up, then launch apps in the background
+(
+  sleep 0.5
+  nitrogen --restore &
+  picom -b &
+  polybar your_bar_name &
+) &
+
+# 3. Finally execute the window manager main process
+exec /home/nyx/.local/bin/sxwm
